@@ -4,17 +4,17 @@
 +#include <linux/idr.h>
 +#include "susfs.h"
 +
-+/* SUSFS 挂载标识定义 */
++/* SUSFS mount identifiers */
 +#define DEFAULT_SUS_MNT_ID 1000
 +#define DEFAULT_SUS_MNT_ID_FOR_KSU_PROC_UNSHARE 9999
 +#define DEFAULT_SUS_MNT_GROUP_ID 2000
 +#define CL_COPY_MNT_NS (1 << 5)
 +
-+/* IDA 分配器初始化 */
++/* IDA allocator initialization */
 +static DEFINE_IDA(susfs_mnt_id_ida);
 +static DEFINE_IDA(susfs_mnt_group_ida);
 +
-+/* 函数声明 */
++/* Function declarations */
 +bool susfs_is_current_ksu_domain(void);
 +bool susfs_is_current_zygote_domain(void);
 +

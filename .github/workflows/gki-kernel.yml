@@ -179,10 +179,11 @@ jobs:
           # Sukisu的补丁仓库
           git clone https://github.com/ShirkNeko/SukiSU_patch.git
 
-          # Clone realme GT7pro-Speed kernel patches if enabled
+          # Clone realme GT7pro-Speed kernel sources if enabled
           if [[ "${{ inputs.realme_gt7pro_speed }}" == "true" ]]; then
-            echo "Cloning realme GT7pro-Speed kernel patches..."
-            git clone https://github.com/realme-kernel-opensource/realme_GT7pro-Speed-AndroidV-kernel-source.git gt7pro-speed-patches
+            echo "Cloning realme GT7pro-Speed kernel sources..."
+            git clone https://github.com/realme-kernel-opensource/realme_GT7pro-Speed-AndroidV-kernel-source.git gt7pro-speed-kernel
+            git clone https://github.com/realme-kernel-opensource/realme_GT7pro-Speed-AndroidV-common-source.git gt7pro-speed-common
           fi
           
       - name: 设置 CONFIG 环境变量
