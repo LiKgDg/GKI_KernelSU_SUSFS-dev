@@ -68,7 +68,7 @@ jobs:
       kernelsu_variant: ${{ inputs.kernelsu_variant }}
 
   build-kernel-a12-5-10:
-    uses: ./.github/workflows/kernel-a12-5.10.yml
+    uses: ./.github/workflows/build-kernel-a12-5-10.yml
     secrets: inherit
     with:
       make_release: true
