@@ -252,7 +252,11 @@ jobs:
             "Stable(标准)")
               case "$variant_input" in
                 "Next")
-                  echo "BRANCH=-s next" >> $GITHUB_ENV
+                  if [ "${{ inputs.kernelsu_branch }}" == "Dev(开发)" ]; then
+                    echo "BRANCH=-s next" >> $GITHUB_ENV
+                  else
+                    echo "BRANCH=-s main" >> $GITHUB_ENV
+                  fi
                   ;;
                 "SukiSU")
                   echo "BRANCH=-s susfs-main" >> $GITHUB_ENV
@@ -316,16 +320,14 @@ jobs:
             cp ../../susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch ./
             patch -p1 --forward --fuzz=3 < 10_enable_susfs_for_ksu.patch
           elif [ "${{ inputs.kernelsu_variant }}" == "Next" ]; then
-            # 临时恢复KSU-NEXT的dev编译
             echo "Applying SUSFS patches for KernelSU-Next..."
             cd ./KernelSU-Next
-            if [ "$BRANCH" == "-s next" ]; then
-              echo "当前为Dev分支的KernelSU-Next"
-              cp ../../susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch ./
-              patch -p1 --forward --fuzz=3 < 10_enable_susfs_for_ksu.patch || true
-              echo "应用临时修复补丁"
-              curl -LSs https://github.com/zzh20188/GKI_KernelSU_SUSFS/raw/refs/heads/dev/FIX_NEXT.SUSFS.patch -o FIX_NEXT.SUSFS.patch 
-              patch -p1 --forward --fuzz=3 < FIX_NEXT.SUSFS.patch 
+            cp ../../susfs4ksu/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch ./
+            patch -p1 --forward --fuzz=3 < 10_enable_susfs_for_ksu.patch || true
+            if [ "${{ inputs.kernelsu_branch }}" == "Dev(开发)" ]; then
+              echo "应用Next Dev分支的临时修复补丁"
+              curl -LSs https://github.com/zzh20188/GKI_KernelSU_SUSFS/raw/refs/heads/dev/FIX_NEXT.SUSFS.patch -o FIX_NEXT.SUSFS.patch
+              patch -p1 --forward --fuzz=3 < FIX_NEXT.SUSFS.patch
             fi
             
           elif [ "${{ inputs.kernelsu_variant }}" == "MKSU" ]; then
