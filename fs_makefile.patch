@@ -1,0 +1,12 @@
+diff --git a/fs/Makefile b/fs/Makefile
+index xxxxxxx..yyyyyyy 100644
+--- a/fs/Makefile
++++ b/fs/Makefile
+@@ -27,6 +27,7 @@ obj-$(CONFIG_FILE_LOCKING) += locks.o
+ obj-$(CONFIG_IOMAP) += iomap.o
+ obj-$(CONFIG_QUOTA) += quota/
+ obj-$(CONFIG_PROC_FS) += proc/
++obj-$(CONFIG_KSU_SUSFS) += susfs.o
+
+ obj-y += coredump.o
+ obj-y += drop_caches.o
