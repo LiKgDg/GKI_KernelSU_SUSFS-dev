@@ -306,7 +306,11 @@ jobs:
           echo "Applying SUSFS patches..."
 
           # Copy SUSFS patches
-          cp ../susfs4ksu/kernel_patches/50_add_susfs_in_gki-${{ inputs.android_version }}-${{ inputs.kernel_version }}.patch ./common/
+          cp ../fs_susfs_definitions.patch ./common/
+          cp ../fs_susfs_definitions.patch ./common/
+          cp ../fs_susfs_definitions.patch ./common/
+          cp ../fs_susfs_definitions.patch ./common/
+          cp ../susfs4ksu/kernel_patches/50_add_susfs_in_gki-${{ inputs.android_version }}-${{ inputs.kernel_version }}.patch ./common/kernel/
           cp ../susfs4ksu/kernel_patches/fs/* ./common/fs/
           cp ../susfs4ksu/kernel_patches/include/linux/* ./common/include/linux/
 
