@@ -252,11 +252,7 @@ jobs:
             "Stable(标准)")
               case "$variant_input" in
                 "Next")
-                  if [ "${{ inputs.kernelsu_branch }}" == "Dev(开发)" ]; then
-                    echo "BRANCH=-s next" >> $GITHUB_ENV
-                  else
-                    echo "BRANCH=-s main" >> $GITHUB_ENV
-                  fi
+                  echo "BRANCH=-s main" >> $GITHUB_ENV
                   ;;
                 "SukiSU")
                   echo "BRANCH=-s susfs-main" >> $GITHUB_ENV
