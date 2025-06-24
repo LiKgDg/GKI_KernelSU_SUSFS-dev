@@ -1,35 +1,16 @@
-diff --git a/fs/susfs.c b/fs/susfs.c
-new file mode 100644
-index 000000000000..bbbbbbbbbbb 100644
---- /dev/null
-+++ b/fs/susfs.c
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * SUSFS implementation for KernelSU
-+ */
++static DEFINE_IDA(susfs_mnt_id_ida);
++#define DEFAULT_SUS_MNT_ID 1000
++#define DEFAULT_SUS_MNT_ID_FOR_KSU_PROC_UNSHARE 2000
++static DEFINE_IDA(susfs_mnt_group_ida);
++#define DEFAULT_SUS_MNT_GROUP_ID 3000
++#define CL_COPY_MNT_NS 0x00020000
 +
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/types.h>
-+#include <linux/ida.h>
-+#include "susfs.h"
-+
-+/* 全局变量定义 */
-+struct ida susfs_mnt_id_ida;
-+struct ida susfs_mnt_group_ida;
-+
-+bool susfs_is_current_ksu_domain(void)
-+{
-+    /* 实现代码 */
++static bool susfs_is_current_ksu_domain(void) {
++    // 实现实际逻辑
 +    return false;
 +}
 +
-+bool susfs_is_current_zygote_domain(void)
-+{
-+    /* 实现代码 */
++static bool susfs_is_current_zygote_domain(void) {
++    // 实现实际逻辑
 +    return false;
 +}
-+
-+void susfs_try_umount(uid_t uid) { /* 实现代码 */ }
