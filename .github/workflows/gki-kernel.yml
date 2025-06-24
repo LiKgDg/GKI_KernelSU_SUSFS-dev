@@ -182,7 +182,7 @@ jobs:
           # Clone realme GT7pro-Speed kernel patches if enabled
           if [[ "${{ inputs.realme_gt7pro_speed }}" == "true" ]]; then
             echo "Cloning realme GT7pro-Speed kernel patches..."
-            git clone https://github.com/xiaoleGun/kernel_patch -b speed-gt7pro-6.6 gt7pro-speed-patches
+            git clone https://github.com/realme-kernel-opensource/realme_GT7pro-Speed-AndroidV-kernel-source.git gt7pro-speed-patches
           fi
           
       - name: 设置 CONFIG 环境变量
