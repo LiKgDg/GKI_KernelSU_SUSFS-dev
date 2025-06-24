@@ -1,16 +1,10 @@
-+static DEFINE_IDA(susfs_mnt_id_ida);
++extern struct ida susfs_mnt_id_ida;
 +#define DEFAULT_SUS_MNT_ID 1000
 +#define DEFAULT_SUS_MNT_ID_FOR_KSU_PROC_UNSHARE 2000
-+static DEFINE_IDA(susfs_mnt_group_ida);
++extern struct ida susfs_mnt_group_ida;
 +#define DEFAULT_SUS_MNT_GROUP_ID 3000
++#define CL_COPY_MNT_NS (1 << 5)
 +#define CL_COPY_MNT_NS 0x00020000
 +
-+static bool susfs_is_current_ksu_domain(void) {
-+    // 实现实际逻辑
-+    return false;
-+}
-+
-+static bool susfs_is_current_zygote_domain(void) {
-+    // 实现实际逻辑
-+    return false;
-+}
++bool susfs_is_current_ksu_domain(void);
++bool susfs_is_current_zygote_domain(void);

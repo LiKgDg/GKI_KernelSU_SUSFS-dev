@@ -22,17 +22,28 @@ index 000000000000..aaaaaaaaaa 100644
 +
 +#include <linux/types.h>
 +#include <linux/ida.h>
++#include <linux/sched.h> // 添加任务结构依赖
 +
-+/* SUSFS definitions required by namespace.c */
++/* 统一CLONE_NEWNS标志定义 */
++#ifndef CLONE_NEWNS
++#define CLONE_NEWNS 0x00020000
++#endif
++
++/* SUSFS mount ID配置 */
 +#define DEFAULT_SUS_MNT_ID 1000
-+#define DEFAULT_SUS_MNT_GROUP_ID 1000
++#define DEFAULT_SUS_MNT_GROUP_ID 3000
 +#define DEFAULT_SUS_MNT_ID_FOR_KSU_PROC_UNSHARE 2000
-+#define CL_COPY_MNT_NS (1 << 0)
++#define CL_COPY_MNT_NS CLONE_NEWNS // 使用标准克隆标志
 +
++/* IDA分配器声明 */
 +extern struct ida susfs_mnt_id_ida;
 +extern struct ida susfs_mnt_group_ida;
++
++/* 域检测函数原型 */
 +bool susfs_is_current_ksu_domain(void);
 +bool susfs_is_current_zygote_domain(void);
++
++/* 挂载操作函数 */
 +void susfs_try_umount(uid_t uid);
 +
 +#endif /* _LINUX_SUSFS_H */

@@ -6,7 +6,7 @@ index xxxxxxx..yyyyyyy 100644
                echo "应用Next Dev分支的临时修复补丁"
                curl -LSs https://github.com/zzh20188/GKI_KernelSU_SUSFS/raw/refs/heads/dev/FIX_NEXT.SUSFS.patch -o FIX_NEXT.SUSFS.patch
                patch -p1 --forward --fuzz=3 < FIX_NEXT.SUSFS.patch
-+              echo "应用SUSFS缺失定义修复补丁"
++              echo "应用SUSFS基础定义补丁"
 +              cd ../..
 +              patch -p1 --forward < fix_missing_susfs_definitions.patch
 +              patch -p1 --forward < fs_susfs.c.patch
